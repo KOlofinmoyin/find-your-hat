@@ -6,7 +6,6 @@ const fieldCharacter = '░';
 const pathCharacter = '*';
 let counter = 0;
 
-while(counter < 3){
 
   class Field {
       constructor(field){
@@ -17,9 +16,18 @@ while(counter < 3){
       }
 
       play(){
+        let playing = true;
+        while (playing) {
+        this.print();
         this.askQuestions();
-        this.field[this.xPos][this.xPos] = pathCharacter;
+          if (this.foundHat()) {
+            console.log(`Congratulations, you've found your hat!`);
+            playing = false;
+            break;
+          }
+        this.field[this.yPos][this.xPos] = pathCharacter;
       }
+    }
 
       askQuestions(){
         let direction = prompt("Which way?");
@@ -43,6 +51,10 @@ while(counter < 3){
         }
       }
 
+      foundHat(){
+        return this.field[this.yPos][this.xPos] == hat;
+      }
+
       print(){
         let screen = this.field.map(row => row.join('')).join('\n');
         console.log(screen);
@@ -52,9 +64,6 @@ while(counter < 3){
          // }
       }
 
-      isWinner(){
-        counter == 3 ? console.log(`Congratulations you've won!`) : "";
-      }
   }
 
   //Object instance to test:
@@ -64,7 +73,3 @@ while(counter < 3){
   ]);
 
   myField.play();
-  myField.print();
-  counter++;
-  // myField.isWinner();
-}
