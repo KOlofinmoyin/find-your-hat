@@ -18,6 +18,7 @@ while(counter < 3){
 
       play(){
         this.askQuestions();
+        this.field[this.xPos][this.xPos] = pathCharacter;
       }
 
       askQuestions(){
