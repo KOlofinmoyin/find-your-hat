@@ -8,7 +8,7 @@ let counter = 0;
 
 while(counter < 3){
   let direction = prompt("Which way?");
-  
+
   class Field {
       constructor(field){
         this.field = field;
@@ -19,6 +19,10 @@ while(counter < 3){
            console.log(`${array.join('')}`);
          }
       }
+
+      isWinner(){
+        counter == 3 ? console.log(`Congratulations you've won!`) : "";
+      }
   }
 
   //Object instance to test:
@@ -28,4 +32,5 @@ while(counter < 3){
   ]);
   myField.print();
   counter++;
+  myField.isWinner();
 }
