@@ -20,8 +20,13 @@ let counter = 0;
         while (playing) {
         this.print();
         this.askQuestions();
+
           if (this.foundHat()) {
             console.log(`Congratulations, you've found your hat!`);
+            playing = false;
+            break;
+          }else if (this.inHole()) {
+            console.log(`Game-over: You're in a hole!`);
             playing = false;
             break;
           }
@@ -53,6 +58,10 @@ let counter = 0;
 
       foundHat(){
         return this.field[this.yPos][this.xPos] == hat;
+      }
+
+      inHole(){
+        return this.field[this.yPos][this.xPos] == hole;
       }
 
       print(){
