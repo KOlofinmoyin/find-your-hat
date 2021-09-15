@@ -17,14 +17,23 @@ while(counter < 3){
       }
 
       play(){
-        this.ask();
+        this.askQuestions();
       }
 
-      ask(){
+      askQuestions(){
         let direction = prompt("Which way?");
         switch (direction) {
           case 'r':
             this.xPos += 1;
+            break;
+          case 'l':
+            this.xPos -= 1;
+            break;
+          case 'u':
+            this.yPos -= 1;
+            break;
+          case 'd':
+            this.yPos += 1;
             break;
           default:
             console.log('enter either of options (r: right, l: left, u: up, d: down)');
