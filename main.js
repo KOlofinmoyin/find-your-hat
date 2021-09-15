@@ -4,8 +4,6 @@ const hat = '^';
 const hole = 'O';
 const fieldCharacter = '░';
 const pathCharacter = '*';
-let counter = 0;
-
 
   class Field {
       constructor(field){
