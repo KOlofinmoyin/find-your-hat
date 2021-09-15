@@ -7,17 +7,39 @@ const pathCharacter = '*';
 let counter = 0;
 
 while(counter < 3){
-  let direction = prompt("Which way?");
 
   class Field {
       constructor(field){
         this.field = field;
+        this.xPos = 0;
+        this.yPos = 0;
+        this.field[0][0] = pathCharacter;
       }
 
-      print(fieldArray=this.field){
-         for(let array of fieldArray){
-           console.log(`${array.join('')}`);
-         }
+      play(){
+        this.ask();
+      }
+
+      ask(){
+        let direction = prompt("Which way?");
+        switch (direction) {
+          case 'r':
+            this.xPos += 1;
+            break;
+          default:
+            console.log('enter either of options (r: right, l: left, u: up, d: down)');
+            this.ask();
+            break;
+        }
+      }
+
+      print(){
+        let screen = this.field.map(row => row.join('')).join('\n');
+        console.log(screen);
+         //
+         // for(let array of fieldArray){
+         //   console.log(`${array.join('')}`);
+         // }
       }
 
       isWinner(){
@@ -30,7 +52,9 @@ while(counter < 3){
     ['░', 'O', '░'],
     ['░', '^', '░'],
   ]);
+
+  myField.play();
   myField.print();
   counter++;
-  myField.isWinner();
+  // myField.isWinner();
 }
