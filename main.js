@@ -21,14 +21,18 @@ let counter = 0;
         this.print();
         this.askQuestions();
 
-          if (this.foundHat()) {
-            console.log(`Congratulations, you've found your hat!`);
+          if (!this.isInBounds()) {
+            console.log(`Game-Over: You're out of bounds!`);
             playing = false;
             break;
           }else if (this.inHole()) {
-            console.log(`Game-over: You're in a hole!`);
+            console.log(`Game-Over: You're in a hole!`);
             playing = false;
             break;
+          }else if (this.foundHat()) {
+          console.log(`Congratulations, you've found your hat!`);
+          playing = false;
+          break;
           }
         this.field[this.yPos][this.xPos] = pathCharacter;
       }
@@ -57,11 +61,20 @@ let counter = 0;
       }
 
       foundHat(){
-        return this.field[this.yPos][this.xPos] == hat;
+        return this.field[this.yPos][this.xPos] === hat;
       }
 
       inHole(){
-        return this.field[this.yPos][this.xPos] == hole;
+        return this.field[this.yPos][this.xPos] === hole;
+      }
+
+      isInBounds(){
+        return (
+          this.yPos >= 0 &&
+          this.yPos < this.field.length &&
+          this.xPos >= 0 &&
+          this.xPos < this.field[0].length
+        );
       }
 
       print(){
