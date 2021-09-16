@@ -17,7 +17,7 @@ const pathCharacter = '*';
         let playing = true;
         while (playing) {
         this.print();
-        this.askQuestions();
+        this.askQuestion();
 
           if (!this.isInBounds()) {
             console.log(`Game-Over: You're out of bounds!`);
@@ -36,7 +36,7 @@ const pathCharacter = '*';
       }
     }
 
-      askQuestions(){
+      askQuestion(){
         let direction = prompt("Which way?");
         switch (direction) {
           case 'r':
@@ -53,7 +53,7 @@ const pathCharacter = '*';
             break;
           default:
             console.log('enter either of options (r: right, l: left, u: up, d: down)');
-            this.ask();
+            this.askQuestion();
             break;
         }
       }
@@ -82,6 +82,18 @@ const pathCharacter = '*';
          // for(let array of fieldArray){
          //   console.log(`${array.join('')}`);
          // }
+      }
+
+      static generateField(height, width, percentage = 0.1){
+          const field = Array(height).fill(0).map(element => Array(width));
+
+          for (var y = 0; y < height; y++) {
+            for (var x = 0; x < width; x++) {
+              const prob = Math.random();
+              field[y][x] = prob > percentage ? pathCharacter : hole;
+            }
+          }
+
       }
 
   }
