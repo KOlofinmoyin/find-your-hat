@@ -1,5 +1,10 @@
 const prompt = require('prompt-sync')({sigint: true});
 
+// This lets us clear the screen after every turn
+// need to run `npm install clear-screen` in the
+// terminal first
+const clear = require('clear-screen');
+
 const hat = '^';
 const hole = 'O';
 const fieldCharacter = '░';
@@ -76,6 +81,7 @@ const pathCharacter = '*';
       }
 
       print(){
+        clear();
         let screen = this.field.map(row => row.join('')).join('\n');
         console.log(screen);
          //
