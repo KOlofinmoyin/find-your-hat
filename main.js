@@ -90,7 +90,7 @@ const pathCharacter = '*';
           for (var y = 0; y < height; y++) {
             for (var x = 0; x < width; x++) {
               const prob = Math.random();
-              field[y][x] = prob > percentage ? pathCharacter : hole;
+              field[y][x] = prob > percentage ? fieldCharacter : hole;
             }
           }
 
@@ -99,16 +99,24 @@ const pathCharacter = '*';
               y: Math.floor(Math.random() * height)
             }
 
-
+            while (hatPosition.y === 0 && hatPosition.x === 0) {
+              hatPosition.y = Math.floor(Math.random() * height);
+              hatPosition.x = Math.floor(Math.random() * width);
+            }
+            field[hatPosition.y][hatPosition.x] = hat;
+            return field;
           }
-  
 
   }
 
   //Object instance to test:
-  const myField = new Field([['*', '░', 'O'],
-    ['░', 'O', '░'],
-    ['░', '^', '░'],
-  ]);
+  // const myField = new Field([['*', '░', 'O'],
+  //   ['░', 'O', '░'],
+  //   ['░', '^', '░'],
+  // ]);
+  //
+  // myField.play();
+
+  const myField = new Field(Field.generateField(10, 10, 0.2));
 
   myField.play();
